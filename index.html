@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adarsh H | Portfolio</title>
+    <title>AdarshDas Official</title>
+    <link rel="icon" type="image/jpeg" href="images/fevicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -29,6 +30,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Added for smooth scrolling offset */
         }
 
         body {
@@ -57,7 +59,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             transition: var(--transition);
-            height: 52px;
+            height: 60px; /* Increased height for better spacing */
         }
 
         header.scrolled {
@@ -69,7 +71,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 52px;
+            height: 60px; /* Match header height */
         }
 
         .logo {
@@ -116,7 +118,7 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding-top: 52px;
+            padding-top: 80px; /* Increased padding to account for fixed header */
             text-align: center;
         }
 
@@ -176,6 +178,7 @@
         /* Sections */
         section {
             padding: var(--section-padding);
+            scroll-margin-top: 80px; /* Added for smooth scrolling offset */
         }
 
         .section-title {
@@ -257,91 +260,57 @@
             object-fit: cover;
         }
 
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+        /* Experience & Education Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2.5rem;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background-color: #d2d2d7;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            width: 50%;
-            padding: 0 2rem;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
+        .info-card {
             background-color: white;
-            padding: 2rem;
             border-radius: 18px;
+            padding: 2.5rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            position: relative;
             transition: var(--transition);
         }
 
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
         }
 
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 24px;
-            width: 20px;
-            height: 20px;
-            background-color: white;
-            transform: rotate(45deg);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -10px;
-        }
-
-        .timeline-date {
+        .card-date {
             display: inline-block;
             background-color: var(--primary);
             color: white;
-            padding: 6px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-size: 14px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-weight: 500;
         }
 
-        .timeline-content h3 {
+        .info-card h3 {
             margin-bottom: 0.5rem;
             font-size: 24px;
             font-weight: 600;
+            color: var(--dark);
         }
 
-        .timeline-content p {
+        .info-card .company,
+        .info-card .institution {
+            color: var(--primary);
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
             color: var(--secondary);
             font-size: 17px;
+            line-height: 1.47059;
+            margin-top: 0.5rem;
         }
 
         /* Projects Section */
@@ -553,31 +522,12 @@
         }
 
         @media (max-width: 992px) {
-
             .about-content,
             .contact-content {
                 grid-template-columns: 1fr;
             }
 
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 0;
-            }
-
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-content::before,
-            .timeline-item:nth-child(even) .timeline-content::before {
-                left: -10px;
-            }
-
+            .cards-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
             }
@@ -587,7 +537,7 @@
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 52px;
+                top: 60px; /* Updated to match new header height */
                 left: 0;
                 width: 100%;
                 background-color: rgba(255, 255, 255, 0.95);
@@ -620,6 +570,15 @@
             .section-title p {
                 font-size: 21px;
             }
+
+            /* Adjust scroll padding for mobile */
+            html {
+                scroll-padding-top: 60px;
+            }
+
+            section {
+                scroll-margin-top: 60px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -629,6 +588,11 @@
 
             .section-title h2 {
                 font-size: 32px;
+            }
+
+            .cards-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -644,9 +608,11 @@
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
                 </div>
+
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
@@ -706,39 +672,44 @@
     <section id="experience" class="experience">
         <div class="container">
             <div class="section-title">
-                <h2>Experience & Education</h2>
-                <p>My professional journey and academic background</p>
+                <h2>Experience</h2>
+                <p>My professional journey</p>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2023</span>
-                        <h3>MBA - Business Analytics & HR</h3>
-                        <p>San International Business School</p>
-                    </div>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <span class="card-date">2022</span>
+                    <h3>Intern - Cybersecurity</h3>
+                    <p class="company">AICL Chennai</p>
+                    <p>Worked on network security, risk assessment, and threat detection concepts.</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2022</span>
-                        <h3>Intern - Cybersecurity</h3>
-                        <p>AICL Chennai</p>
-                        <p>Worked on network security, risk assessment, and threat detection concepts.</p>
-                    </div>
+                <div class="info-card">
+                    <span class="card-date">2020</span>
+                    <h3>Intern - Python Programming</h3>
+                    <p class="company">Softronics</p>
+                    <p>Enhanced programming skills in Python.</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2021</span>
-                        <h3>B.Tech - Computer Science</h3>
-                        <p>Dhanalakshmi Srinivasan College of Engineering (CGPA 7.7)</p>
-                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <div class="section-title">
+                <h2>Education</h2>
+                <p>My academic background</p>
+            </div>
+            <div class="cards-grid">
+                <div class="info-card">
+                    <span class="card-date">2023</span>
+                    <h3>MBA - Business Analytics & HR</h3>
+                    <p class="institution">San International Business School</p>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <span class="timeline-date">2020</span>
-                        <h3>Intern - Python Programming</h3>
-                        <p>Softronics</p>
-                        <p>Enhanced programming skills in Python.</p>
-                    </div>
+                <div class="info-card">
+                    <span class="card-date">2021</span>
+                    <h3>B.Tech - Computer Science</h3>
+                    <p class="institution">Dhanalakshmi Srinivasan College of Engineering</p>
+                    <p>CGPA: 7.7</p>
                 </div>
             </div>
         </div>
@@ -767,26 +738,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <img src="images/fitnessproject.jpg" alt="Fitness & Nutrition Tracker"
-                                style="width:100%; height:100%; object-fit:cover;">
-                        </div>
-                        <div class="project-content">
-                            <h3>Smart Fitness & Nutrition Tracker</h3>
-                            <p>Integrated APIs for real-time food and workout tracking with personalized
-                                recommendations.
-                            </p>
-                            <div class="project-tags">
-                                <span class="project-tag">API Integration</span>
-                                <span class="project-tag">Web Development</span>
-                                <span class="project-tag">Data Analytics</span>
-                            </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/fitnessproject.jpg" alt="Fitness & Nutrition Tracker"
+                            style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Smart Fitness & Nutrition Tracker</h3>
+                        <p>Integrated APIs for real-time food and workout tracking with personalized
+                            recommendations.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">API Integration</span>
+                            <span class="project-tag">Web Development</span>
+                            <span class="project-tag">Data Analytics</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
@@ -813,7 +783,7 @@
                         </div>
                         <div>
                             <h3>Email</h3>
-                            <p>adarsh@example.com</p>
+                            <p>adarsh1182001@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -822,7 +792,7 @@
                         </div>
                         <div>
                             <h3>Phone</h3>
-                            <p>+91 98765 43210</p>
+                            <p>+91 8594094504</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -836,22 +806,22 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/xeornbnw" method="POST">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <input type="text" id="name" name="name" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                            <input type="email" id="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" class="form-control" required>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -864,12 +834,20 @@
     <footer>
         <div class="container">
             <div class="social-links">
-                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/adarshdas1182001/" target="_blank" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/adarshdas11" target="_blank" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://wa.me/918594094504" target="_blank" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/adarrsh.h/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
-            <p class="copyright">© 2023 Adarsh H. All Rights Reserved.</p>
+            <p class="copyright">© 2025 Adarsh H. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -892,14 +870,7 @@
             navLinks.classList.toggle('active');
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for navigation links - FIXED VERSION
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -909,12 +880,15 @@
 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    const extraSpace = 20; // Additional spacing for better visual
+                    const targetPosition = targetElement.offsetTop - headerHeight - extraSpace;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
 
-                    // Close mobile menu if open
                     if (window.innerWidth <= 768) {
                         navLinks.classList.remove('active');
                     }
