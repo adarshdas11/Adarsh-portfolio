@@ -759,7 +759,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (with AJAX Formspree submit & auto-clear) -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title">
@@ -806,7 +806,8 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm" action="https://formspree.io/f/xeornbnw" method="POST">
+                    <!-- updated form: still posts to Formspree but handled via JS to clear fields on success -->
+                    <form id="contactForm" action="https://formspree.io/f/xeornbnw" method="POST" novalidate>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" class="form-control" required>
@@ -824,6 +825,9 @@
                             <textarea id="message" name="message" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
+
+                        <!-- status message shown after submit -->
+                        <div id="formStatus" class="form-status" aria-live="polite" style="margin-top:12px;color:var(--secondary)"></div>
                     </form>
                 </div>
             </div>
@@ -883,7 +887,7 @@
                     const headerHeight = document.getElementById('header').offsetHeight;
                     const extraSpace = 20; // Additional spacing for better visual
                     const targetPosition = targetElement.offsetTop - headerHeight - extraSpace;
-                    
+
                     window.scrollTo({
                         top: targetPosition,
                         behavior: 'smooth'
@@ -895,6 +899,60 @@
                 }
             });
         });
+    </script>
+
+    <!-- Formspree AJAX submit script (clears fields on success) -->
+    <script>
+      (function () {
+        const form = document.getElementById('contactForm');
+        if (!form) return;
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const statusEl = document.getElementById('formStatus');
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          // disable submit while sending
+          submitBtn.disabled = true;
+          const originalBtnText = submitBtn.textContent;
+          submitBtn.textContent = 'Sending...';
+          statusEl.style.color = 'var(--secondary)';
+          statusEl.textContent = '';
+
+          const data = new FormData(form);
+
+          try {
+            const res = await fetch(form.action, {
+              method: 'POST',
+              headers: { 'Accept': 'application/json' },
+              body: data
+            });
+
+            if (res.ok) {
+              statusEl.style.color = '#0b845b'; // green-ish
+              statusEl.textContent = 'Thanks — your message has been sent!';
+              form.reset(); // <-- clears all fields
+            } else {
+              // try to parse JSON error message if available
+              let json = null;
+              try { json = await res.json(); } catch (err) { /* ignore parse errors */ }
+              statusEl.style.color = '#c0392b'; // red
+              statusEl.textContent = (json && (json.error || json.message)) ? (json.error || json.message) : 'Submission failed. Please try again.';
+              console.warn('Formspree responded with non-OK:', res.status, json);
+            }
+          } catch (err) {
+            statusEl.style.color = '#c0392b';
+            statusEl.textContent = 'Network error. Please try again later.';
+            console.error('Form submit error:', err);
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            // hide message after 5s
+            setTimeout(() => { statusEl.textContent = ''; }, 5000);
+          }
+        });
+      })();
     </script>
 </body>
 
