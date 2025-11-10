@@ -180,20 +180,28 @@
         }
 
         .hero-image {
-            position: relative;
-            max-width: 450px;
-            border-radius: var(--radius);
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
             overflow: hidden;
+            margin-left: 100px;
+            /* move right */
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
 
+
+
         .hero-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
+            /* This centers your face */
+            object-position: 50% 35%;
+            border-radius: 50%;
             transition: var(--transition);
         }
+
 
         .hero-image:hover img {
             transform: scale(1.03);
@@ -752,13 +760,6 @@
                         </div>
                     </div>
                     <div class="contact-item fade-in">
-                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+91 8594094504</p>
-                        </div>
-                    </div>
-                    <div class="contact-item fade-in">
                         <div class="contact-icon"><i class="fas fa-language"></i></div>
                         <div>
                             <h3>Languages</h3>
@@ -801,8 +802,6 @@
                         class="fab fa-linkedin-in"></i></a>
                 <a href="https://github.com/adarshdas11" target="_blank" class="social-link"><i
                         class="fab fa-github"></i></a>
-                <a href="https://wa.me/918594094504" target="_blank" class="social-link"><i
-                        class="fab fa-whatsapp"></i></a>
                 <a href="https://www.instagram.com/adarrsh.h/" target="_blank" class="social-link"><i
                         class="fab fa-instagram"></i></a>
             </div>
