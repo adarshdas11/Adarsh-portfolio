@@ -367,6 +367,30 @@
             font-size: 15px;
         }
 
+        .edu-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 0.8rem;
+        }
+
+        .edu-list li {
+            font-size: 15px;
+            color: var(--secondary);
+            margin-bottom: 4px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        /* Minimal Dot Bullet */
+        .edu-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+
         /* CONTACT */
         .contact-content {
             display: grid;
@@ -697,6 +721,18 @@
                 </div>
                 <div class="project-card fade-in">
                     <div class="project-image">
+                        <img src="images/myportfolio.png" alt="My Personal Portfolio Website">
+                    </div>
+                    <div class="project-content">
+                        <h3>My Personal Portfolio Website</h3>
+                        <p>Designed and built my own professional portfolio using HTML, CSS, JavaScript, and Bootstrap.
+                            The website showcases my projects, skills, education, and experience with a clean modern UI,
+                            smooth animations, and a fully responsive layout for both desktop and mobile devices.</p>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-image">
                         <img src="images/arunbinuport.png" alt="Personal Portfolio Website">
                     </div>
                     <div class="project-content">
@@ -737,7 +773,6 @@
             </div>
         </div>
     </section>
-
     <!-- EDUCATION -->
     <section id="education">
         <div class="container">
@@ -745,27 +780,45 @@
                 <h2>Education</h2>
                 <p>My academic background</p>
             </div>
+
             <div class="cards-grid">
+
                 <div class="info-card fade-in">
                     <span class="card-date">2023 – 2025</span>
-                    <h3>MBA - Business Analytics & Human Resource Management</h3>
-                    <p class="institution">San International Business School</p>
+                    <h3>MBA – Business Analytics & HR</h3>
+                    <ul class="edu-list">
+                        <li>San International Business School</li>
+                        <li>Coimbatore, Tamil Nadu</li>
+                        <li>CGPA: 7.9</li>
+                    </ul>
                 </div>
+
                 <div class="info-card fade-in">
                     <span class="card-date">2019 – 2023</span>
-                    <h3>B.E. - Computer Science and Engineering</h3>
-                    <p class="institution">Dhanalakshmi Srinivasan College of Engineering</p>
-                    <p>CGPA: 7.7</p>
+                    <h3>B.E – Computer Science and Engineering</h3>
+                    <ul class="edu-list">
+                        <li>Dhanalakshmi Srinivasan College of Engineering</li>
+                        <li>Coimbatore, Tamil Nadu</li>
+                        <li>Anna University</li>
+                        <li>CGPA: 7.7</li>
+                    </ul>
                 </div>
+
                 <div class="info-card fade-in">
                     <span class="card-date">2018 – 2019</span>
-                    <h3>Higher Secondary Education - Computer Science</h3>
-                    <p class="institution">Railway Higher Secondary School, Palakkad</p>
-                    <p>CGPA: 7.37</p>
+                    <h3>HSE – Computer Science</h3>
+                    <ul class="edu-list">
+                        <li>Railway Higher Secondary School</li>
+                        <li>Palakkad, Kerala</li>
+                        <li>CGPA: 7.37</li>
+                    </ul>
                 </div>
+
             </div>
         </div>
     </section>
+
+
 
     <!-- CONTACT -->
     <section id="contact" class="contact">
