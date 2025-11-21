@@ -258,58 +258,94 @@
             transform: translateY(-2px);
         }
 
-        /* PROJECTS */
+        /* PROJECTS - UPDATED STYLES */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
+            margin-top: 32px;
         }
 
         .project-card {
-            background-color: var(--white);
-            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
+            box-shadow: 0 6px 18px rgba(14, 26, 47, 0.08);
+            transition: transform 220ms ease, box-shadow 220ms ease;
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(14, 26, 47, 0.12);
         }
 
+        /* <-- CHANGED: make thumbnails not cropped; keep aspect ratio --> */
         .project-image {
-            height: 240px;
-            overflow: hidden;
-            position: relative;
+            width: 100%;
+            height: auto;               /* let height adapt to image */
+            padding: 18px;              /* spacing so image doesn't touch edges */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #f6f8fb, #eef3f9);
         }
 
         .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* prevents cropping */
             transition: var(--transition);
         }
+        /* <-- end change --> */
 
         .project-card:hover img {
             transform: scale(1.05);
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
         .project-content h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
+            margin: 0;
+            font-size: 1.05rem;
+            letter-spacing: -0.2px;
+            color: #0f1724;
         }
 
         .project-content p {
-            color: var(--secondary);
-            font-size: 15px;
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.45;
+            color: #475569;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 6px;
+            align-self: start;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            text-decoration: none;
+            background: linear-gradient(90deg, rgba(99,102,241,0.12), rgba(59,130,246,0.08));
+            color: #0f1724;
+            border: 1px solid rgba(99,102,241,0.16);
+            box-shadow: 0 4px 10px rgba(99,102,241,0.03);
+            transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(99,102,241,0.08);
+            background: linear-gradient(90deg, rgba(99,102,241,0.18), rgba(59,130,246,0.12));
+            color: #041025;
         }
 
         /* EXPERIENCE & EDUCATION */
@@ -625,6 +661,12 @@
             }
 
         }
+
+        /* Mobile adjustments for project cards */
+        @media (max-width: 480px) {
+            .project-image { height: 140px; }
+            .project-content { padding: 14px; }
+        }
     </style>
 </head>
 
@@ -654,7 +696,7 @@
                 <div class="hero-text fade-in">
                     <h1>Hi, I'm <span>Adarsh Das</span></h1>
                     <p>
-                        I’m a tech-savvy professional from Palakkad, Kerala, blending Computer Science Engineering with
+                        I'm a tech-savvy professional from Palakkad, Kerala, blending Computer Science Engineering with
                         Business Analytics.
                         Passionate about building efficient, data-driven solutions that bridge technology and strategy.
                     </p>
@@ -692,76 +734,112 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Projects</h2>
-                <p>Showcasing my technical capabilities and problem-solving skills</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="images/deepfake.jpeg" alt="Deepfake Image Detection System">
-                    </div>
-                    <div class="project-content">
-                        <h3>Deepfake Image Detection System</h3>
-                        <p>Built an AI system to detect deepfake images using MTCNN for face extraction and ResNet-18
-                            for classification,
-                            implemented with PyTorch and OpenCV for accurate real vs fake image detection.
-                        </p>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="images/project2.png" alt="Commodity Inventory Management Web Application">
-                    </div>
-                    <div class="project-content">
-                        <h3>Commodity Inventory Management Web Application</h3>
-                        <p>A Commodity Inventory Management web app with an admin dashboard to add, edit, and manage
-                            product items. Built using Django with a responsive UI (HTML, CSS, JavaScript) and deployed
-                            on Render for live access.</p>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="images/myportfolio.png" alt="My Personal Portfolio Website">
-                    </div>
-                    <div class="project-content">
-                        <h3>My Personal Portfolio Website</h3>
-                        <p>Designed and built my own portfolio website using HTML, CSS, JavaScript, and Bootstrap,
-                            featuring a clean UI, smooth animations, and a fully responsive layout showcasing my
-                            projects and skills.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="images/arunbinuport.png" alt="Personal Portfolio Website">
-                    </div>
-                    <div class="project-content">
-                        <h3>Personal Portfolio Website</h3>
-                        <p>Designed a professional personal portfolio website for a client using HTML, CSS, and
-                            JavaScript, featuring a clean UI, responsive design, and deployment through GitHub Pages for
-                            global access.
-                        </p>
-                    </div>
-                </div>
-                <div class="project-card fade-in">
-                    <div class="project-image">
-                        <img src="images/Powerbitask2.png" alt="Power BI Sales Dashboard">
-                    </div>
-                    <div class="project-content">
-                        <h3>Power BI Sales Dashboard</h3>
-                        <p>Created an interactive Power BI dashboard using the Superstore dataset to analyze sales,
-                            profit, categories, and regions, featuring KPIs, trends, insights, and slicers for clear
-                            business storytelling.
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <!-- PROJECTS -->
+<section id="projects">
+    <div class="container">
+        <div class="section-title fade-in">
+            <h2>Projects</h2>
+            <p>Showcasing my technical capabilities and problem-solving skills</p>
         </div>
-    </section>
+
+        <div class="projects-grid">
+
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="images/deepfake.jpeg" alt="Deepfake Image Detection System">
+                </div>
+                <div class="project-content">
+                    <h3>Deepfake Image Detection System</h3>
+                    <p>Built an AI system to detect deepfake images using MTCNN for face extraction and ResNet-18
+                        for classification, implemented with PyTorch and OpenCV for accurate real vs fake image
+                        detection.
+                    </p>
+                    <a href="https://github.com/adarshdas11/ai-deepfake_project" target="_blank" rel="noopener" class="project-link"
+                        aria-label="View Deepfake project on GitHub">View my work</a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="images/project2.png" alt="Commodity Inventory Management Web Application">
+                </div>
+                <div class="project-content">
+                    <h3>Commodity Inventory Management Web Application</h3>
+                    <p>A Commodity Inventory Management web app with an admin dashboard to add, edit, and manage
+                        product items. Built using Django with a responsive UI (HTML, CSS, JavaScript) and deployed
+                        on Render for live access.
+                    </p>
+                    <a href="https://slooze-i0dx.onrender.com/" target="_blank" rel="noopener" class="project-link"
+                        aria-label="View Inventory project on GitHub">View my work</a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="images/taskmanagertask.png" alt="Task Manager Web Application">
+                </div>
+                <div class="project-content">
+                    <h3>Task Manager Web Application</h3>
+                    <p>A full-stack Task Manager app with user authentication and complete task CRUD features, built
+                        using React, TailwindCSS, Django REST Framework, and JWT authentication, and fully deployed
+                        on Render with a modern responsive UI.
+                    </p>
+                    <a href="https://challenge-taskmanager-1.onrender.com/login" target="_blank" rel="noopener" class="project-link"
+                        aria-label="View Task Manager project on GitHub">View my work</a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="images/myportfolio.png" alt="My Personal Portfolio Website">
+                </div>
+                <div class="project-content">
+                    <h3>My Personal Portfolio Website</h3>
+                    <p>Designed and built my own portfolio website using HTML, CSS, JavaScript, and Bootstrap,
+                        featuring a clean UI, smooth animations, and a fully responsive layout showcasing my
+                        projects and skills.
+                    </p>
+                    <a href="https://adarshdas11.github.io/Adarsh-portfolio/" target="_blank" rel="noopener" class="project-link"
+                        aria-label="View Portfolio project on GitHub">View my work</a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="images/arunbinuport.png" alt="Personal Portfolio Website">
+                </div>
+                <div class="project-content">
+                    <h3>Personal Portfolio Website</h3>
+                    <p>Designed a professional personal portfolio website for a client using HTML, CSS, and
+                        JavaScript, featuring a clean UI, responsive design, and deployment through GitHub Pages for
+                        global access.
+                    </p>
+                    <a href="https://arunbinu00.github.io/Arun-Binu-Portfolio/" target="_blank" rel="noopener" class="project-link"
+                        aria-label="View Client Portfolio project on GitHub">View my work</a>
+                </div>
+            </div>
+
+            <div class="project-card fade-in">
+                <div class="project-image">
+                    <img src="images/Powerbitask2.png" alt="Power BI Sales Dashboard">
+                </div>
+                <div class="project-content">
+                    <h3>Power BI Sales Dashboard</h3>
+                    <p>Created an interactive Power BI dashboard using the Superstore dataset to analyze sales,
+                        profit, categories, and regions, featuring KPIs, trends, insights, and slicers for clear
+                        business storytelling.
+                    </p>
+                    <a href="https://github.com/adarshdas11/Task-4-Sales-Dashboard" target="_blank" rel="noopener" class="project-link"
+                        aria-label="View Power BI dashboard project on GitHub">View my work</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
 
     <!-- EXPERIENCE -->
     <section id="experience">
