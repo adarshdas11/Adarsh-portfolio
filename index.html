@@ -24,6 +24,109 @@
             --radius: 16px;
         }
 
+        /* DARK MODE OVERRIDES — when .dark is on <html> */
+        html.dark {
+            --primary: #4aa8ff;
+            --primary-dark: #1f8eff;
+            --secondary: #c5c5c5;
+            --dark: #f5f5f7;
+            --light: #050509;
+            --white: #0d0f12;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Page background + text */
+        html.dark body {
+            background: linear-gradient(180deg, #0f1117 0%, #191c24 40%, #0c0e13 100%);
+            color: var(--dark);
+        }
+
+
+        /* Form fields in dark mode */
+        html.dark .form-control {
+            background-color: #1a1d24 !important;
+            /* soft dark grey */
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            color: #e6e8ec !important;
+            /* light text */
+        }
+
+        html.dark .form-control:focus {
+            background-color: #20242d !important;
+            border-color: #4aa8ff !important;
+            /* soft blue focus */
+            box-shadow: 0 0 0 4px rgba(74, 168, 255, 0.15);
+        }
+
+        /* Header + hero background in dark mode */
+        html.dark header {
+            background: rgba(10, 10, 20, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        html.dark .hero {
+            background: linear-gradient(135deg, #0f1117 0%, #191c24 50%, #0c0e13 100%);
+        }
+
+
+        /* Section + card backgrounds */
+        /* Remove white section background in dark mode */
+        html.dark section {
+            background: transparent !important;
+        }
+
+
+        html.dark .project-card,
+        html.dark .info-card,
+        html.dark .contact-form {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+
+
+        /* Fix project buttons in dark mode */
+        html.dark .project-link {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #e8ecf4 !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        html.dark .project-link:hover {
+            background: rgba(255, 255, 255, 0.18) !important;
+            color: #ffffff !important;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.08);
+        }
+
+
+        /* Text colors inside cards/sections */
+        html.dark .project-content p,
+        html.dark .info-card p,
+        html.dark .section-title p,
+        html.dark .contact-item p,
+        html.dark .edu-list li {
+            color: #d5d8e3;
+        }
+
+        /* Contact icons + footer */
+        html.dark .contact-icon {
+            background-color: rgba(255, 255, 255, 0.06);
+            color: var(--primary);
+        }
+
+
+        /* Make project titles visible in dark mode */
+        html.dark .project-content h3 {
+            color: #f1f3f7 !important;
+            /* soft white */
+        }
+
+        html.dark footer {
+            background-color: #050509;
+        }
+
+
         * {
             margin: 0;
             padding: 0;
@@ -104,12 +207,71 @@
             transform: translateY(-2px);
         }
 
+        /* ------------------------------------- */
+        /*          DARK MODE TOGGLE BUTTON       */
+        /* ------------------------------------- */
+
+        .theme-toggle {
+            margin-left: auto;
+            margin-right: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            background-color: rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* ICON – Light Mode */
+        .theme-toggle i {
+            color: #1d1d1f;
+            /* dark icon */
+            pointer-events: none;
+        }
+
+        /* Hover Effect */
+        .theme-toggle:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ------------------------------------- */
+        /*                DARK MODE               */
+        /* ------------------------------------- */
+
+        /* Soft grey circle in dark mode */
+        html.dark .theme-toggle {
+            background-color: #e5e5e5 !important;
+            border-color: #e5e5e5 !important;
+        }
+
+        /* Black sun icon in dark mode */
+        html.dark .theme-toggle i {
+            color: #000 !important;
+        }
+
+        /* ------------------------------------- */
+        /* MOBILE MENU (unchanged)               */
+        /* ------------------------------------- */
+
         .mobile-menu {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--dark);
         }
+
+        /* Keep this margin tweak */
+        .theme-toggle {
+            margin-right: 8px;
+        }
+
+
 
         /* HERO SECTION */
         .hero {
@@ -688,6 +850,7 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">Adarsh Das</a>
+
                 <div class="nav-links">
                     <a href="#home">Home</a>
                     <a href="#skills">Skills</a>
@@ -696,8 +859,15 @@
                     <a href="#education">Education</a>
                     <a href="#contact">Contact</a>
                 </div>
+
+                <!-- DARK MODE TOGGLE BUTTON -->
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+
                 <div class="mobile-menu"><i class="fas fa-bars"></i></div>
             </nav>
+
         </div>
     </header>
 
@@ -1029,6 +1199,36 @@
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
         mobileMenu.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        // DARK MODE TOGGLE
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+
+        // Load saved theme on initial load
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        // Handle toggle click
+        themeToggle.addEventListener('click', () => {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+
+            if (isDark) {
+                // Switched to dark
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                // Switched to light
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
